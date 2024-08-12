@@ -27,6 +27,8 @@ async function run() {
     await client.connect();
 const userCollection = client.db("pathwayTravel").collection("users");
 const packages=client.db('pathwayTravel').collection('package')
+const  reviews=client.db('pathwayTravel').collection('reviews')
+const  about=client.db('pathwayTravel').collection('about')
 const booking=client.db('pathwayTravel').collection('booking')
 
 app.post("/users", async (req, res) => {
@@ -49,6 +51,16 @@ app.get("/users", async (req, res) => {
 
 app.get("/package",async(req,res)=>{
   const result= await packages.find().toArray()
+  res.send(result)
+})
+
+app.get("/reviews",async(req,res)=>{
+  const result= await reviews.find().toArray()
+  res.send(result)
+})
+
+app.get("/about",async(req,res)=>{
+  const result= await about.find().toArray()
   res.send(result)
 })
 
